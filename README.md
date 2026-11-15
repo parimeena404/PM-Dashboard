@@ -1,132 +1,91 @@
 # Project Management Form using JsonPowerDB
 
-**Live Deployed Application:** [https://pm-dashboard.netlify.app](https://pm-dashboard.netlify.app)  
+**Live Deployed Application:** [https://projm-dashboard.netlify.app](https://projm-dashboard.netlify.app)  
 **GitHub Repository:** [https://github.com/parimeena404/PM-Dashboard](https://github.com/parimeena404/PM-Dashboard)
 
----
+A lightweight web application for managing project records using **JsonPowerDB**. The application allows users to create, retrieve, and update project information through a simple form-based interface.
 
-## 1. Description
-
-The Project Management Form is a web-based micro project developed using JsonPowerDB. The application is designed to store, retrieve and update project-related information in a database.
-
-The project uses Project-ID as its primary key to uniquely identify each project.
-
-The application allows users to:
-- Enter new project details.
-- Check whether a Project-ID already exists.
-- Retrieve existing project information.
-- Update the details of an existing project.
-- Reset the form to its initial state.
-- Validate input fields to prevent empty data.
-
-### Database Details
-
-| Property | Value |
-|---|---|
-| Database Name | COLLEGE-DB |
-| Relation Name | PROJECT-TABLE |
-| Primary Key | Project-ID |
-
-### Input Fields
-
-1. Project-ID
-2. Project-Name
-3. Assigned-To
-4. Assignment-Date
-5. Deadline
+The project demonstrates how a web application can communicate with a NoSQL database using REST APIs and perform database operations without requiring a complex backend architecture.
 
 ---
 
-## 2. Benefits of Using JsonPowerDB
+## 1. Project Overview
 
-JsonPowerDB offers several benefits:
+The Project Management Form is a college micro project developed to demonstrate database connectivity and record management using JsonPowerDB.
 
-1. **Simple to Use:** Provides a straightforward way to store and retrieve JSON data.
-2. **Schema-Free:** Offers flexibility when working with JSON-based records.
-3. **REST API Support:** Allows applications to communicate with the database using API requests.
-4. **Fast Development:** Reduces the complexity involved in building database-driven applications.
-5. **JSON-Based:** Works naturally with JavaScript applications and JSON data.
-6. **Easy Integration:** Can be integrated with web applications using JavaScript and AJAX.
-7. **Lightweight:** Makes it convenient to develop small database-driven applications.
+It provides a structured form where users can enter a unique Project ID, check whether a record already exists, and perform the appropriate database operation.
+
+If the entered Project ID is new, the application allows the user to create a project record. If the ID already exists, the application retrieves the saved information and allows the user to update it.
+
+The application follows a simple and controlled workflow to ensure that project records are managed correctly.
 
 ---
 
-## 3. Scope of Functionalities
+## 2. Project Objectives
 
-The project provides the following functionalities:
+The main objectives of this project are:
 
-- Primary-key-based record checking.
-- New project insertion.
-- Existing project retrieval.
-- Project information updating.
-- Form reset functionality.
-- Input validation.
-- Database connectivity using JsonPowerDB.
+- To understand the working of JsonPowerDB.
+- To establish communication between a web application and a database.
+- To implement record insertion, retrieval, and updating.
+- To understand the role of a primary key in database management.
+- To implement form validation and input handling.
+- To develop a responsive and user-friendly interface.
+- To understand REST API communication and asynchronous requests.
+
+---
+
+## 3. Features
+
+- **Primary Key Validation:** Checks whether a Project ID already exists in the database.
+- **New Record Creation:** Allows users to enter and save new project details.
+- **Existing Record Retrieval:** Automatically fetches project information using the Project ID.
+- **Record Updating:** Allows users to modify previously saved project details.
+- **Form Reset:** Clears the form and restores its initial state.
+- **Input Validation:** Prevents empty fields and invalid date entries.
+- **Date Validation:** Ensures the project deadline is not earlier than the assignment date.
+- **Dynamic Form Controls:** Enables and disables fields and buttons according to the current operation.
+- **Responsive Interface:** Provides a clean layout across different screen sizes.
+- **Database Integration:** Stores and retrieves records through JsonPowerDB.
 
 ---
 
 ## 4. Technologies Used
 
-- NetBeans IDE / Modern Code Editor
-- JsonPowerDB (REST API)
-- HTML5
-- CSS3
-- JavaScript
-- jQuery / AJAX
-- Netlify Serverless Functions (Secure API proxy for connection token)
-- Netlify (Hosting & Deployment)
+| Technology | Purpose |
+|---|---|
+| HTML5 | Structure of the application |
+| CSS3 | Styling and responsive design |
+| JavaScript | Application logic and form interactions |
+| jQuery | DOM manipulation and event handling |
+| AJAX | Asynchronous communication |
+| JsonPowerDB | Database storage and retrieval |
+| Netlify | Website hosting and serverless functions proxy |
 
 ---
 
-## 5. Database Structure
+## 5. Database Configuration
 
-**Database:** COLLEGE-DB  
-**Relation:** PROJECT-TABLE  
-**Primary Key:** Project-ID
+**Database Name:** `COLLEGE-DB`  
+**Relation Name:** `PROJECT-TABLE`  
+**Primary Key:** `Project-ID`
 
-| Field Name | Description |
-|---|---|
-| Project-ID | Unique project identifier |
-| Project-Name | Name of the project |
-| Assigned-To | Person assigned to the project |
-| Assignment-Date | Date of assignment |
-| Deadline | Project completion deadline |
+### Data Fields
+
+| Field Name | Type | Description |
+|---|---|---|
+| `Project-ID` | String | Unique project identifier (Primary Key) |
+| `Project-Name` | String | Name of the project |
+| `Assigned-To` | String | Person assigned to the project |
+| `Assignment-Date` | Date (YYYY-MM-DD) | Date the project was assigned |
+| `Deadline` | Date (YYYY-MM-DD) | Project completion deadline |
 
 ---
 
 ## 6. How to Use
 
-1. Open the application: [https://pm-dashboard.netlify.app](https://pm-dashboard.netlify.app)
-2. Enter a **Project-ID** and press Enter or Tab.
-3. **If the ID is new:** The form unlocks all fields. Enter the project details and click **Save**.
-4. **If the ID already exists:** The existing information will be retrieved and displayed automatically.
-5. Modify the required fields and click **Update**.
-6. Click **Reset** to clear the form and return to the initial state.
-
----
-
-## 7. Release History
-
-### Version 1.0.0 – Initial Release
-**Date:** 15 November 2026
-
-- Created the Project Management Form.
-- Integrated the application with JsonPowerDB REST API.
-- Implemented primary key checking (`GET_BY_KEY`).
-- Added project record insertion (`PUT`).
-- Added project record updating (`UPDATE`).
-- Implemented form reset and input validation.
-- Implemented secure serverless backend proxy to protect connection token.
-- Deployed live on Netlify.
-
----
-
-## 8. Project Status
-
-Initial micro project release for academic learning and demonstration of JsonPowerDB database operations.
-
----
-
-## 9. Author
-
-Developed as part of the JsonPowerDB Micro Project assignment.
+1. Open the application: [https://projm-dashboard.netlify.app](https://projm-dashboard.netlify.app)
+2. Enter a **Project-ID** (e.g., `PRJ-101`) and press **Tab** or **Enter**.
+3. **If the ID is new:** The form unlocks all fields. Fill in the details and click **Save**.
+4. **If the ID already exists:** The existing project details will be populated automatically. Edit any field and click **Update**.
+5. Click **Reset** at any time to clear the form and return to the initial state.
