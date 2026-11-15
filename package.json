@@ -1,0 +1,23 @@
+{
+  "name": "project-management-form-jpdb",
+  "version": "1.0.0",
+  "description": "Project Management Form using JsonPowerDB — College Micro Project",
+  "main": "index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo No build step required for this static project"
+  },
+  "keywords": [
+    "jsonpowerdb",
+    "jpdb",
+    "project-management",
+    "crud",
+    "netlify-functions",
+    "college-project"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management Form | JsonPowerDB</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display:none;">
+        <div class="spinner"></div>
+        <p>Processing&hellip;</p>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="form-header">
+            <h1>Project Management Form</h1>
+            <p class="subtitle">Micro Project &mdash; CRUD Operations using JsonPowerDB</p>
+        </header>
+
+        <!-- Notification Area -->
+        <div id="notification" class="notification" style="display:none;"></div>
+
+        <!-- Form -->
+        <form id="projectForm" autocomplete="off" novalidate>
+
+            <!-- Project ID -->
+            <div class="form-group">
+                <label for="projectId">Project-ID <span class="required">*</span></label>
+                <input type="text" id="projectId" name="Project-ID"
+                       placeholder="Enter unique Project ID"
+                       autofocus>
+            </div>
+
+            <!-- Project Name -->
+            <div class="form-group">
+                <label for="projectName">Project-Name <span class="required">*</span></label>
+                <input type="text" id="projectName" name="Project-Name"
+                       placeholder="Enter project name" disabled>
+            </div>
+
+            <!-- Assigned To -->
+            <div class="form-group">
+                <label for="assignedTo">Assigned-To <span class="required">*</span></label>
+                <input type="text" id="assignedTo" name="Assigned-To"
+                       placeholder="Enter assignee name" disabled>
+            </div>
+
+            <!-- Assignment Date -->
+            <div class="form-group">
+                <label for="assignmentDate">Assignment-Date <span class="required">*</span></label>
+                <input type="date" id="assignmentDate" name="Assignment-Date" disabled>
+            </div>
+
+            <!-- Deadline -->
+            <div class="form-group">
+                <label for="deadline">Deadline <span class="required">*</span></label>
+                <input type="date" id="deadline" name="Deadline" disabled>
+            </div>
+
+            <!-- Buttons -->
+            <div class="btn-group">
+                <button type="button" id="btnSave" class="btn btn-save" disabled>
+                    <span class="btn-icon">&#10003;</span> Save
+                </button>
+                <button type="button" id="btnUpdate" class="btn btn-update" disabled>
+                    <span class="btn-icon">&#9998;</span> Update
+                </button>
+                <button type="button" id="btnReset" class="btn btn-reset">
+                    <span class="btn-icon">&#8635;</span> Reset
+                </button>
+            </div>
+        </form>
+
+        <!-- Footer -->
+        <footer class="form-footer">
+            <p>Powered by <strong>JsonPowerDB</strong> &mdash; A Real-time, High-Performance Database</p>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

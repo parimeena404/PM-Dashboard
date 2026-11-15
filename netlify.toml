@@ -1,0 +1,21 @@
+# Netlify deployment configuration
+# Frontend is served from the project root.
+# Netlify Functions are in netlify/functions/.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Optional cleaner API path (frontend uses /.netlify/functions/jpdb directly)
+[[redirects]]
+  from = "/api/jpdb"
+  to = "/.netlify/functions/jpdb"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
