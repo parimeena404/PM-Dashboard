@@ -8,16 +8,19 @@
    the browser.
    ============================================ */
 
+import https from 'node:https';
+
 /**
  * JsonPowerDB API configuration.
  *
- * Base URL : http://api.login2explore.com:5577
- * All JPDB commands use HTTP POST with a JSON body.
+ * Host: api.login2explore.com:5577
+ * All JPDB commands use HTTPS POST with a JSON body.
  *
  * IRL endpoint (retrieval) : /api/irl
  * IML endpoint (mutation)  : /api/iml
  */
-const JPDB_BASE_URL = "https://api.login2explore.com:5577";
+const JPDB_HOST = "api.login2explore.com";
+const JPDB_PORT = 5577;
 
 /**
  * Netlify Functions handler.
@@ -248,25 +251,39 @@ async function handleUpdate(token, dbName, rel, recNo, jsonStr) {
  * @returns {object} Parsed JSON response from JPDB
  */
 async function callJPDB(endpoint, payload) {
-    const url = JPDB_BASE_URL + endpoint;
-
-    const response = await fetch(url, {
-        method:  "POST",
-        headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify(payload)
-    });
-
-    let data;
-    try {
-        data = await response.json();
-    } catch (_) {
-        data = {
-            status:  response.status,
-            message: "Failed to parse JPDB response."
+    return new Promise((resolve, reject) => {
+        const data = JSON.stringify(payload);
+        const options = {
+            hostname: JPDB_HOST,
+            port: JPDB_PORT,
+            path: endpoint,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(data)
+            },
+            rejectUnauthorized: false
         };
-    }
 
-    return data;
+        const req = https.request(options, (res) => {
+            let resBody = '';
+            res.on('data', chunk => resBody += chunk);
+            res.on('end', () => {
+                try {
+                    resolve(JSON.parse(resBody));
+                } catch {
+                    resolve({ status: res.statusCode, message: resBody });
+                }
+            });
+        });
+
+        req.on('error', (err) => {
+            reject(err);
+        });
+
+        req.write(data);
+        req.end();
+    });
 }
 
 // ══════════════════════════════════════════════
