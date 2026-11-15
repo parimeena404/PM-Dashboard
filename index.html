@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Management Form | JsonPowerDB</title>
+    <title>Project Management Workspace | JsonPowerDB</title>
+    <!-- Inter Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <!-- jQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -12,76 +16,229 @@
 
     <!-- Loading Overlay -->
     <div id="loading-overlay" class="loading-overlay" style="display:none;">
-        <div class="spinner"></div>
-        <p>Processing&hellip;</p>
+        <div class="spinner-container">
+            <div class="spinner"></div>
+            <p>Processing request&hellip;</p>
+            <span class="spinner-sub">Communicating with JsonPowerDB</span>
+        </div>
     </div>
 
-    <div class="container">
-        <!-- Header -->
-        <header class="form-header">
-            <h1>Project Management Form</h1>
-            <p class="subtitle">Micro Project &mdash; CRUD Operations using JsonPowerDB</p>
-        </header>
-
-        <!-- Notification Area -->
-        <div id="notification" class="notification" style="display:none;"></div>
-
-        <!-- Form -->
-        <form id="projectForm" autocomplete="off" novalidate>
-
-            <!-- Project ID -->
-            <div class="form-group">
-                <label for="projectId">Project-ID <span class="required">*</span></label>
-                <input type="text" id="projectId" name="Project-ID"
-                       placeholder="Enter unique Project ID"
-                       autofocus>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">PlanFlow</span>
+                    <span class="brand-badge">Enterprise DB</span>
+                </div>
             </div>
-
-            <!-- Project Name -->
-            <div class="form-group">
-                <label for="projectName">Project-Name <span class="required">*</span></label>
-                <input type="text" id="projectName" name="Project-Name"
-                       placeholder="Enter project name" disabled>
+            <div class="nav-status">
+                <span class="status-indicator"></span>
+                <span class="status-text">Connected to COLLEGE-DB</span>
             </div>
+        </div>
+    </nav>
 
-            <!-- Assigned To -->
-            <div class="form-group">
-                <label for="assignedTo">Assigned-To <span class="required">*</span></label>
-                <input type="text" id="assignedTo" name="Assigned-To"
-                       placeholder="Enter assignee name" disabled>
+    <!-- Main Workspace Container -->
+    <main class="main-wrapper">
+
+        <!-- Welcome Banner Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    <span>Database Management Console</span>
+                </div>
+                <h1 class="hero-title">Project Management Workspace</h1>
+                <p class="hero-subtitle">Fast, secure CRUD operations powered by <strong>JsonPowerDB</strong> real-time high-performance engine.</p>
             </div>
+        </section>
 
-            <!-- Assignment Date -->
-            <div class="form-group">
-                <label for="assignmentDate">Assignment-Date <span class="required">*</span></label>
-                <input type="date" id="assignmentDate" name="Assignment-Date" disabled>
+        <!-- Form Card -->
+        <section class="card-container">
+            <div class="card">
+                
+                <!-- Card Header -->
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <div class="card-header-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="card-title">Project Details</h2>
+                            <p class="card-subtitle">Manage project records, assignments, and milestones</p>
+                        </div>
+                    </div>
+                    <div class="card-badge">
+                        <span>PROJECT-TABLE</span>
+                    </div>
+                </div>
+
+                <!-- Notification Area -->
+                <div id="notification" class="notification" style="display:none;"></div>
+
+                <!-- Form -->
+                <form id="projectForm" class="project-form" autocomplete="off" novalidate>
+
+                    <!-- Primary Key Field (Prominent Full Width Banner) -->
+                    <div class="form-row full-width">
+                        <div class="form-group primary-key-group">
+                            <div class="label-wrapper">
+                                <label for="projectId">
+                                    <span class="label-text">Project-ID</span>
+                                    <span class="required-star">*</span>
+                                </label>
+                                <span class="pk-chip">Primary Key</span>
+                            </div>
+                            <div class="input-icon-wrapper">
+                                <span class="input-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 2l-2 2m-1.5 6.1L12 15.5l-3.5-1-1 3.5 1.5 1.5-1 3.5-3.5-1L3 24l-1-1 1.5-1.5-1-3.5 3.5 1 1.5-1.5-1-3.5 3.5 1L15.5 8l4.6-4.6a2 2 0 0 1 2.8 2.8z"></path>
+                                    </svg>
+                                </span>
+                                <input type="text" id="projectId" name="Project-ID" class="form-input pk-input"
+                                       placeholder="Enter Project ID (e.g., PRJ-101) & press Tab/Enter"
+                                       autofocus>
+                            </div>
+                            <span class="helper-text">Enter an existing ID to update or a new ID to register a project.</span>
+                        </div>
+                    </div>
+
+                    <!-- Row: Project Name & Assigned-To (Two Column Grid) -->
+                    <div class="form-grid">
+                        
+                        <!-- Project Name -->
+                        <div class="form-group">
+                            <label for="projectName">
+                                <span class="label-text">Project-Name</span>
+                                <span class="required-star">*</span>
+                            </label>
+                            <div class="input-icon-wrapper">
+                                <span class="input-icon">
+                                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    </svg>
+                                </span>
+                                <input type="text" id="projectName" name="Project-Name" class="form-input"
+                                       placeholder="e.g. Cloud Portal Migration" disabled>
+                            </div>
+                        </div>
+
+                        <!-- Assigned To -->
+                        <div class="form-group">
+                            <label for="assignedTo">
+                                <span class="label-text">Assigned-To</span>
+                                <span class="required-star">*</span>
+                            </label>
+                            <div class="input-icon-wrapper">
+                                <span class="input-icon">
+                                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                </span>
+                                <input type="text" id="assignedTo" name="Assigned-To" class="form-input"
+                                       placeholder="e.g. Sarah Jenkins" disabled>
+                            </div>
+                        </div>
+
+                        <!-- Assignment Date -->
+                        <div class="form-group">
+                            <label for="assignmentDate">
+                                <span class="label-text">Assignment-Date</span>
+                                <span class="required-star">*</span>
+                            </label>
+                            <div class="input-icon-wrapper">
+                                <span class="input-icon">
+                                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                </span>
+                                <input type="date" id="assignmentDate" name="Assignment-Date" class="form-input" disabled>
+                            </div>
+                        </div>
+
+                        <!-- Deadline -->
+                        <div class="form-group">
+                            <label for="deadline">
+                                <span class="label-text">Deadline</span>
+                                <span class="required-star">*</span>
+                            </label>
+                            <div class="input-icon-wrapper">
+                                <span class="input-icon">
+                                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                </span>
+                                <input type="date" id="deadline" name="Deadline" class="form-input" disabled>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="btn-group">
+                        <button type="button" id="btnSave" class="btn btn-save" disabled>
+                            <span class="btn-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </span>
+                            <span>Save Record</span>
+                        </button>
+                        <button type="button" id="btnUpdate" class="btn btn-update" disabled>
+                            <span class="btn-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </span>
+                            <span>Update Details</span>
+                        </button>
+                        <button type="button" id="btnReset" class="btn btn-reset">
+                            <span class="btn-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="23 4 23 10 17 10"></polyline>
+                                    <polyline points="1 20 1 14 7 14"></polyline>
+                                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                                </svg>
+                            </span>
+                            <span>Reset Form</span>
+                        </button>
+                    </div>
+
+                </form>
+
             </div>
+        </section>
 
-            <!-- Deadline -->
-            <div class="form-group">
-                <label for="deadline">Deadline <span class="required">*</span></label>
-                <input type="date" id="deadline" name="Deadline" disabled>
-            </div>
+    </main>
 
-            <!-- Buttons -->
-            <div class="btn-group">
-                <button type="button" id="btnSave" class="btn btn-save" disabled>
-                    <span class="btn-icon">&#10003;</span> Save
-                </button>
-                <button type="button" id="btnUpdate" class="btn btn-update" disabled>
-                    <span class="btn-icon">&#9998;</span> Update
-                </button>
-                <button type="button" id="btnReset" class="btn btn-reset">
-                    <span class="btn-icon">&#8635;</span> Reset
-                </button>
-            </div>
-        </form>
-
-        <!-- Footer -->
-        <footer class="form-footer">
-            <p>Powered by <strong>JsonPowerDB</strong> &mdash; A Real-time, High-Performance Database</p>
-        </footer>
-    </div>
+    <!-- Refined Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <p><strong>Project Management Form</strong> &bull; Micro Project assignment</p>
+            <p class="footer-powered">Powered by <a href="http://login2explore.com/jpdb/docs.html" target="_blank" rel="noopener">JsonPowerDB</a></p>
+        </div>
+    </footer>
 
     <script src="js/script.js"></script>
 </body>
