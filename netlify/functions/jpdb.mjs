@@ -17,7 +17,7 @@
  * IRL endpoint (retrieval) : /api/irl
  * IML endpoint (mutation)  : /api/iml
  */
-const JPDB_BASE_URL = "http://api.login2explore.com:5577";
+const JPDB_BASE_URL = "https://api.login2explore.com:5577";
 
 /**
  * Netlify Functions handler.

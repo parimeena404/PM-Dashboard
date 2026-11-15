@@ -89,7 +89,7 @@ The application uses a **Netlify serverless function** as a secure backend proxy
 | `PUT` | `/api/iml` (IML — Index Manipulation Language) | Insert a new JSON document into a relation |
 | `UPDATE` | `/api/iml` (IML — Index Manipulation Language) | Modify an existing record using its record number |
 
-All JPDB API calls use **HTTP POST** with a JSON body containing `token`, `cmd`, `dbName`, `rel`, and `jsonStr` fields.
+All JPDB API calls use **HTTPS POST** with a JSON body containing `token`, `cmd`, `dbName`, `rel`, and `jsonStr` fields.
 
 ## Database Structure
 
