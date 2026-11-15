@@ -1,8 +1,5 @@
 # Project Management Form using JsonPowerDB
 
-**Live Deployed Application:** [https://projm-dashboard.netlify.app](https://projm-dashboard.netlify.app)  
-**GitHub Repository:** [https://github.com/parimeena404/PM-Dashboard](https://github.com/parimeena404/PM-Dashboard)
-
 A lightweight web application for managing project records using **JsonPowerDB**. The application allows users to create, retrieve, and update project information through a simple form-based interface.
 
 The project demonstrates how a web application can communicate with a NoSQL database using REST APIs and perform database operations without requiring a complex backend architecture.
